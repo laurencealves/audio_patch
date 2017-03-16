@@ -56,7 +56,7 @@ void draw() { // formato das barras
 
   popMatrix();
 
- saveFrame("metreon-######.png");
+// saveFrame("metreon-######.png"); -> salvar imagens por cada fraçao de segundo
 }
 
 void stop() {
