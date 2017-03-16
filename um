@@ -1,7 +1,7 @@
 import ddf.minim.*;
 import ddf.minim.signals.*;
 
-Minim minim;
+Minim minim;  // add essa biblioteca
 AudioPlayer song;
 
 float color1 = 10;
@@ -9,13 +9,13 @@ float color2 = 10;
 float color3 = 10;
 float color4 = 10;
 
-void setup() {
+void setup() {  // iniciar patch
   size(500, 500);
   background(100);
   colorMode(HSB, 100, 100, 100, 100);
 
   minim = new Minim(this);
-  song = minim.loadFile("MontgomeryBartNew.mp3", 1024);
+  song = minim.loadFile("MontgomeryBartNew.mp3", 1024);  // inserir arquivo de audio aqui - inserir arquivo em pasta do sketch 
 
   song.play();
 
@@ -24,7 +24,7 @@ void setup() {
   smooth();
 }
 
-void draw() {
+void draw() { // formato das barras 
   noStroke();
   fill(100, 5);
   rect(0, 0, width, height);
