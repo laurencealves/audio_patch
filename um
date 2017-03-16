@@ -1,0 +1,67 @@
+import ddf.minim.*;
+import ddf.minim.signals.*;
+
+Minim minim;
+AudioPlayer song;
+
+float color1 = 10;
+float color2 = 10;
+float color3 = 10;
+float color4 = 10;
+
+void setup() {
+  size(500, 500);
+  background(100);
+  colorMode(HSB, 100, 100, 100, 100);
+
+  minim = new Minim(this);
+  song = minim.loadFile("MontgomeryBartNew.mp3", 1024);
+
+  song.play();
+
+  song.setVolume(0.0);
+
+  smooth();
+}
+
+void draw() {
+  noStroke();
+  fill(100, 5);
+  rect(0, 0, width, height);
+  pushMatrix();
+  translate(width/2, height/2);
+  rotate(radians(frameCount % 360 * 2));
+  for (int j = 0; j < 360; j++) {
+
+    if (song.mix.get(j)*200 > 50) {
+      stroke(color1, 0, 0);
+    } else {
+      stroke(color2, 0, 0);
+    }
+
+    line(cos(j)*50, sin(j)*50, cos(j)*abs(song.left.get(j))*200 + cos(j)*50, sin(j)*abs(song.right.get(j))*200 + sin(j)*50);
+  }
+  for (int k = 360; k > 0; k--) {
+
+
+    if (song.mix.get(k)*200 > 25) {
+      stroke(color3, 0, 0);
+    } else {
+      stroke(color4, 0, 0);
+    }
+
+
+    line(cos(k)*50, sin(k)*50, cos(k)*abs(song.right.get(k))*200 + cos(k)*50, sin(k)*abs(song.left.get(k))*200 + sin(k)*50);
+  }
+
+  popMatrix();
+
+ saveFrame("metreon-######.png");
+}
+
+void stop() {
+
+  song.close();
+  minim.stop();
+  super.stop();
+}
